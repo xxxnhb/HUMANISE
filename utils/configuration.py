@@ -1,19 +1,19 @@
 import argparse
 import os
 import time
+root = '/mnt/petrelfs/daiwenxun/jinpeng/humanise/'
+smplx_folder = root + 'data/models_smplx_v1_1/models/'
+# scan2cad_anno = '/home/wangzan/Data/scan2cad/scan2cad_download_link/full_annotations.json'
+scannet_folder = root + 'data/scannet/scans/'
+# referit3d_sr3d = '/home/wangzan/Data/referit3d/sr3d.csv'
 
-smplx_folder = '/home/wangzan/Data/SHADE/models_smplx_v1_1/models/'
-scan2cad_anno = '/home/wangzan/Data/scan2cad/scan2cad_download_link/full_annotations.json'
-scannet_folder = '/home/wangzan/Data/scannet/scans/'
-referit3d_sr3d = '/home/wangzan/Data/referit3d/sr3d.csv'
-
-pure_motion_folder = '/home/wangzan/Data/motion/pure_motion/'
-align_data_folder = '/home/wangzan/Data/motion/align_data_release/'
-preprocess_scene_folder = '/home/wangzan/Projects/Pointnet2.ScanNet/preprocessing/scannet_scenes'
+pure_motion_folder = root + 'data/motion/pure_motion/'
+align_data_folder = root + 'data/motion/align_data_release/'
+preprocess_scene_folder = root + 'data/preprocessing/scannet_scenes/'
 
 
 ## train & test
-batch_size = 16
+batch_size = 2
 learning_rate = 1e-4
 num_epoch = 500
 device = 'cuda'

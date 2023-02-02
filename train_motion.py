@@ -28,7 +28,7 @@ def train(args):
     args.scene_group_size = args.npoints // 256 # need change if scene model changes
     args.input_size = 3 + 6 + 63 # trans + orient + body pose
 
-    train_dataloader= get_dataloader(args, 'train')
+    train_dataloader = get_dataloader(args, 'train')
     val_dataloader = get_dataloader(args, 'val')
 
     dataloader = {
@@ -76,7 +76,7 @@ if __name__ == '__main__':
 
     ## set cuda
     if args.device == 'cuda':
-        os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-    args.device = torch.device("cuda:0" if args.device == 'cuda' else "cpu")
+        os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+    args.device = torch.device("cuda:1" if args.device == 'cuda' else "cpu")
 
     train(args)

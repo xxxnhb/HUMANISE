@@ -10,8 +10,8 @@ from utils.visualization import render_smplx_body_sequence, frame2video
 import smplx
 import torch
 
-smplx_folder = '/home/wangzan/Data/SHADE/models_smplx_v1_1/models/'
-ROOT = '/home/wangzan/'
+smplx_folder = '/mnt/disk_1/jinpeng/HUMANISE/Data/SHADE/models/'
+ROOT = '/mnt/disk_1/jinpeng/HUMANISE/'
 l_babel_dense_files = ['train', 'val']
 d_folder = ROOT + 'Data/babel/babel_v1.0_release'
 amass_smplx_neutral = ROOT + 'Data/amass/smplx_gender_neutral'

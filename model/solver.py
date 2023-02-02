@@ -68,7 +68,7 @@ class MotionSolver():
                 cond_rest_param.append(param)
         self.optimizer_h = optim.Adam(
             [
-                {'params': cond_scene_param, 'lr': self.config.lr * 0.1},
+                # {'params': cond_scene_param, 'lr': self.config.lr * 0.1},
                 {'params': cond_rest_param},
                 {'params': list(self.base_model.parameters())},
             ],
