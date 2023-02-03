@@ -2,6 +2,7 @@ import os
 import sys
 from typing import Any
 sys.path.append(os.path.abspath('./'))
+os.environ['CUDA_VISIBLE_DEVICES'] = '5'
 import torch
 from torch.utils.data import DataLoader
 from utils.configuration import parse_args
@@ -56,8 +57,8 @@ if __name__ == '__main__':
         raise Exception('Unexpected log folder')
 
     ## set cuda
-    if args.device == 'cuda':
-        os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+    # if args.device == 'cuda':
+    #     os.environ['CUDA_VISIBLE_DEVICES'] = '0'
     args.device = torch.device("cuda:0" if args.device == 'cuda' else "cpu")
     args.batch_size = 1
 

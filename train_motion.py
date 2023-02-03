@@ -3,6 +3,9 @@ import sys
 from typing import Any
 sys.path.append(os.path.abspath('./'))
 from loguru import logger
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+os.environ['PYOPENGL_PLATFORM'] = 'egl'
+os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
 import torch
 import numpy as np
 from torch.utils.tensorboard import SummaryWriter
@@ -39,7 +42,8 @@ def train(args):
     Console.log('-' * 30)
     Console.log('\n[Info]')
     Console.log("Train examples: {}".format(len(train_dataloader)))
-    Console.log("Eval examples: {}".format(len(val_dataloader)))
+    Console.log("Eval exa"
+                "mples: {}".format(len(val_dataloader)))
 
     solver = MotionSolver(args, dataloader)
     # solver.check_data()
@@ -49,9 +53,9 @@ def train(args):
 
 if __name__ == '__main__':
     torch.multiprocessing.set_start_method('spawn')
-    os.environ['PYOPENGL_PLATFORM'] = 'egl'
+    # os.environ['CUDA_LAUNCH_BLOCKING'] = '1'
     ## Reproducible
-    torch.backends.cudnn.benchmark = False     
+    torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     np.random.seed(0)
     torch.manual_seed(0)
@@ -75,8 +79,10 @@ if __name__ == '__main__':
     Console.log('[************ Global Configuration ************] \n' + str(args) + '\n')
 
     ## set cuda
-    if args.device == 'cuda':
-        os.environ['CUDA_VISIBLE_DEVICES'] = '1'
-    args.device = torch.device("cuda:1" if args.device == 'cuda' else "cpu")
+    # if args.device == 'cuda':
+    #     os.environ['CUDA_VISIBLE_DEVICES'] = '6'
+    #     print(torch.cuda.device_count())
+    args.device = torch.device("cuda" if args.device == 'cuda' else "cpu")
+    print(torch.cuda.device_count())
 
     train(args)

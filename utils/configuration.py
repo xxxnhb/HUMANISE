@@ -1,7 +1,8 @@
 import argparse
 import os
 import time
-root = '/mnt/petrelfs/daiwenxun/jinpeng/humanise/'
+root = './'
+# root = '/mnt/petrelfs/daiwenxun/jinpeng/humanise/'
 smplx_folder = root + 'data/models_smplx_v1_1/models/'
 # scan2cad_anno = '/home/wangzan/Data/scan2cad/scan2cad_download_link/full_annotations.json'
 scannet_folder = root + 'data/scannet/scans/'

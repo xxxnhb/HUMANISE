@@ -50,6 +50,7 @@ BEST_REPORT_TEMPLATE = """
 
 class MotionSolver():
     def __init__(self, conf: Any, dataloader: dict):
+        os.environ['CUDA_VISIBLE_DEVICES'] = '6'
         self.config = conf
 
         self.cond_net = CondNet(self.config).to(self.config.device)
@@ -282,14 +283,12 @@ class MotionSolver():
         for arg in args:
             D.append(arg.shape[2])
         D = [sum(D[0:i]) for i in range(1, len(D)+1)]
-
         cond_latent, pred_target_object = self.cond_net(
             (point_coords, point_feats, offset),
             (lang_desc, lang_mask),
             betas,
         )
-
-        rec_x, mu, logvar  = self.base_model(
+        rec_x, mu, logvar = self.base_model(
             torch.cat(args, dim=-1),
             cond_latent,
             seq_mask,

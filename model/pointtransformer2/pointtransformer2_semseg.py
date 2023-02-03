@@ -503,7 +503,7 @@ class PointTransformerV2(nn.Module):
             skips[-1].append(cluster)  # record grid cluster of pooling
             skips.append([points])  # record points info of current stage
         p5, x5, o5 = points
-        p6, x6 = [], []
+        # p6, x6 = [], []
         for i in range(len(o5)):
             if i == 0:
                 p6 = self.AvgPool1(p5[:o5[i]].unsqueeze(0))

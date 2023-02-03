@@ -24,8 +24,6 @@ class CondNet(nn.Module):
         self.pointnet2_cfg = {'is_msg': False, 'input_channels': 6, 'use_xyz': True, 'bn': True}
         self.co_attention_layer_nhead = 8
         self.scene_post_layer_out_size = 16
-        self.AvgPool1 = nn.AdaptiveAvgPool2d((128, 3))
-        self.AvgPool2 = nn.AdaptiveAvgPool2d((128, 512))
         ## scene model, point transformer
         fea_dim = 3 + int(self.config.use_color) * 3 + int(self.config.use_normal) * 3
         # self.scene_model = PointTransformerEnc(c=fea_dim).cuda()
@@ -37,7 +35,7 @@ class CondNet(nn.Module):
         self.scene_model = PointTransformer2Enc(in_channels=fea_dim).cuda()
         if self.config.pretrained_scene_model != '':
             model_dict = torch.load(
-                '/mnt/petrelfs/daiwenxun/jinpeng/humanise/outputs/model_dict_best.pth')
+                '/mnt/disk_1/jinpeng/ptv2/exp/scannet/semseg-ptv2m2-0-base/model/model_dict_best.pth')
             static_dict = self._process_scene_model_static_dict2(model_dict)
             self.scene_model.load_state_dict(static_dict)
             Console.log('Load pre-trained scene model weigth \'{}\'..'.format(self.config.pretrained_scene_model))
